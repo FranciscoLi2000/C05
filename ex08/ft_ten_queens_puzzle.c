@@ -8,19 +8,19 @@
 
 使用回溯法来暴力搜索所有的情况。具体实现有递归和非递归两种办法。*/
 
-int ft_ten_queens_puzzle(void)
+int	ft_ten_queens_puzzle(void)
 {
-    int row;
-    int col;
+	int	row;
+	int	col;
 
-    row = 1;
-    while (row <= 10)
-    {
-        col = 1;
-        while (col <= 10)
-        {
-            col++;
-        }
-        row++;
-    }
+	row = 1;
+	while (row <= 10)
+	{
+		col = 1;
+		while (col <= 10)
+		{
+			col++;
+		}
+		row++;
+	}
 }
