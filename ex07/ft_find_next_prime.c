@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 int	ft_is_prime(int nb)
 {
@@ -29,4 +30,18 @@ int	ft_find_next_prime(int nb)
 	while (!ft_is_prime(nb))
 		nb += 2;
 	return (nb);
+}
+
+int	main(void)
+{
+	int	n;
+
+	printf("Enter a number: ");
+	scanf("%i", &n);
+	if (ft_is_prime(n))
+		printf("Your number %i is prime number.\n", n);
+	else
+		printf("Your number %i is NOT prime number.\n", n);
+	printf("After the number %i, we can find %i is a prime number.\n", n, ft_find_next_prime(n));
+	return (0);
 }

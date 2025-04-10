@@ -1,26 +1,63 @@
-/* https://blog.csdn.net/a2632699773/article/details/111377984 */
+#include <stdio.h>
+#include <stdlib.h>
+#define ABS(value) ((value) < 0 ? -(value) : (value))
 
-/* https://blog.csdn.net/weixin_54570972/article/details/132606675 */
-
-/* 使用一个N×N的矩阵A（二维数组）来模拟棋盘，aij = 0或1。0表示棋盘上没有棋子，1表示棋盘上有棋子（i表示行，j表示列）。
-
-也可以使用一个一维数组（a[N]）来存储棋子的放法，即a[i]表示第i行棋子在第几列。这样便可保证所有的棋子都不存在行冲突了。
-
-使用回溯法来暴力搜索所有的情况。具体实现有递归和非递归两种办法。*/
-
-int	ft_ten_queens_puzzle(void)
+int	is_safe(int row, int col, int *board)
 {
-	int	row;
+	int	i;
+
+	i = 0;
+	while (i < row)
+	{
+		if (board[i] == col || ABS(row - i) == ABS(col - board[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	backtrack(int row, int *board, int n)
+{
+	int	count;
 	int	col;
 
-	row = 1;
-	while (row <= 10)
+	if (row == n)
+		return (1);
+	count = 0;
+	col = 0;
+	while (col < n)
 	{
-		col = 1;
-		while (col <= 10)
+		if (is_safe(row, col, board))
 		{
-			col++;
+			board[row] = col;
+			count += backtrack(row + 1, board, n);
 		}
-		row++;
+		col++;
 	}
+	return (count);
+}
+
+int	ft_ten_queens_puzzle(int n)
+{
+	int	*board;
+	int	solutions;
+
+	board = (int *)malloc(n * sizeof(int));
+	if (!board)
+		return (-1);
+	solutions = backtrack(0, board, n);
+	free(board);
+	return (solutions);
+}
+
+int	main(int argc, char **argv)
+{
+	int	n;
+	int	solve;
+
+	printf("How many queens do you want to put?\n");
+	scanf("%i", &n);
+	solve = ft_ten_queens_puzzle(n);
+	printf("%d Queens Problem has %i solutions.\n", n, solve);
+	return (0);
 }

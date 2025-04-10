@@ -1,3 +1,4 @@
+#include <stdio.h>
 
 int	ft_fibonacci(int index)
 {
@@ -35,3 +36,13 @@ int	ft_fibonacci(int index)
 	return ft_fibonacci_memo(index, memo);
 }
 */
+
+int	main(void)
+{
+	int	n;
+
+	printf("Enter a integer: ");
+	scanf("%i", &n);
+	printf("Result: %i\n", ft_fibonacci(n));
+	return (0);
+}
